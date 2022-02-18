@@ -1,0 +1,23 @@
+.TrelloList {
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 auto;
+	width: 18rem;
+	max-height: 100%;
+	background-color: #f5f5f5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+	border-radius: 0.4rem;
+	margin: 0.2rem;
+	box-sizing: border-box;
+	padding: 0.4rem;
+}
+
+.TrelloList h1{
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+}
+
+
