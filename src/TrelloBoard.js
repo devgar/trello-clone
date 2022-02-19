@@ -6,16 +6,19 @@ import './TrelloBoard.css'
 
 function TrelloBoard() {
 	const [lists, setLists] = useState([
-		{},
+		{ title: 'Inicio' },
 	])
 
 	const addList = () => {
-		setLists([...lists, {}])
+		let title = prompt("Título para la nueva lista", "Sin título") 
+		if (title !== null) setLists([...lists, { title: title || "Sin título" }])
 	}
 
 	return (
 		<div className="TrelloBoard">
-			{ lists.map((_list, index) => (<TrelloList key={index} />)) }
+			{ lists.map(({ title }, index) => 
+				(<TrelloList key={index} title={title} />))
+			}
 			<button onClick={addList}>Add List</button>
 		</div>
 	)
