@@ -1,17 +1,19 @@
 import { useState } from 'react'
 
 import TrelloList from './TrelloList.js'
+import ID from './lib/id.js'
 
 import './TrelloBoard.css'
 
 function TrelloBoard() {
 	const [lists, setLists] = useState([
-		{ title: 'Inicio' },
+		{ id: ID(), title: 'Inicio' },
 	])
 
 	const addList = () => {
 		let title = prompt("Título para la nueva lista", "Sin título") 
-		if (title !== null) setLists([...lists, { title: title || "Sin título" }])
+		if (title !== null)
+			setLists([...lists, { id: ID(), title: title || "Sin título" }])
 	}
 
 	return (

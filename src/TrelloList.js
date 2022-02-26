@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import ID from './lib/id.js'
+
 import './TrelloList.css'
 
 function TrelloList(props) {
@@ -8,7 +10,8 @@ function TrelloList(props) {
 
 	const addTask = () => {
 		let title = prompt("Título para la nueva tarjeta","Sin título")
-		if (title !== null) setCards([...cards, { title: title || "Sin título" }])
+		if (title !== null)
+			setCards([...cards, { id: ID(), title: title || "Sin título" }])
 	}
 
 	const changeTitle = () => {
