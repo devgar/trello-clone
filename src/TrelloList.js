@@ -22,9 +22,9 @@ function TrelloList(props) {
 				<a href="#" >X</a>
 			</div>
 			<div className="Cards">
-				{ cards.map(({ title }, index) =>
-					<p class="TrelloCard" key={index}>{ title }</p> )
-				}
+				{ cards.map(({ title }, index) => (
+					<p className="TrelloCard" key={index}>{ title }</p>
+				) )}
 			</div>
 			<button onClick={addTask} >Add Card</button>
 		</div>
