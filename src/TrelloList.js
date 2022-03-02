@@ -1,37 +1,48 @@
-import { useState } from 'react'
-
-import ID from './lib/id.js'
+import { connect } from 'react-redux'
 
 import './TrelloList.css'
 
-function TrelloList(props) {
-	const [title, setTitle] = useState(props.title || "Sin título")
-	const [cards, setCards] = useState([])
-
-	const addTask = () => {
-		let title = prompt("Título para la nueva tarjeta","Sin título")
-		if (title !== null)
-			setCards([...cards, { id: ID(), title: title || "Sin título" }])
-	}
-
-	const changeTitle = () => {
-		setTitle(prompt("Cambiar título a la lista", title) || title)
-	}
-
+function TrelloList({ uid, title, cards, addCard, changeTitle }) {
 	return (
 		<div className="TrelloList">
 			<div className="ListHeader">
-				<h1 onClick={changeTitle} >{ title }</h1>
+				<h1 onClick={() => changeTitle(uid, title)} >{ title }</h1>
 				<a href="#" >X</a>
 			</div>
 			<div className="Cards">
-				{ cards.map(({ title }, index) => (
-					<p className="TrelloCard" key={index}>{ title }</p>
+				{ cards.filter(({ list_id }) => list_id === uid).map(({ title }, index) => (
+					<p className="TrelloCard" key={index}>{title}</p>
 				) )}
 			</div>
-			<button onClick={addTask} >Add Card</button>
+			<button onClick={() => addCard(uid)} >Add Card</button>
 		</div>
 	)
 }
 
-export default TrelloList
+const mapStateToProps = ({ cards, lists }) => ({ cards, lists })
+
+const mapDispatchToProps = dispatch => ({ 
+	addCard(id) {
+		let title = prompt("Título para la nueva tarjeta", "Sin título")
+		if (title !== null) {
+			return dispatch({
+				type: 'CARDS/ADD',
+				data: {
+					title: title || "Sin título",
+					list_id: id
+				}
+			})
+		}
+	},
+	changeTitle(id, title) {
+		return dispatch({
+			type: 'LISTS/RENAME',
+			id: id,
+			title: prompt("Cambiar título a la lista", title) || title
+		})
+	}
+})
+
+const connectedTrelloList = connect(mapStateToProps, mapDispatchToProps)(TrelloList)
+
+export default connectedTrelloList
