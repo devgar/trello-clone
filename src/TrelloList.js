@@ -1,17 +1,19 @@
 import { connect } from 'react-redux'
 
+import TrelloCard from './TrelloCard'
+
 import './TrelloList.css'
 
 function TrelloList({ uid, title, cards, addCard, changeTitle }) {
 	return (
 		<div className="TrelloList">
 			<div className="ListHeader">
-				<h1 onClick={() => changeTitle(uid, title)} >{ title }</h1>
+				<h1 onClick={() => changeTitle(uid, title)} >{title}</h1>
 				<a href="#" >X</a>
 			</div>
 			<div className="Cards">
-				{ cards.filter(({ list_id }) => list_id === uid).map(({ title }, index) => (
-					<p className="TrelloCard" key={index}>{title}</p>
+				{ cards.filter(({ list_id }) => list_id === uid).map(({ id, title }) => (
+					<TrelloCard cardId={id} title={title} key={id} />
 				) )}
 			</div>
 			<button onClick={() => addCard(uid)} >Add Card</button>
