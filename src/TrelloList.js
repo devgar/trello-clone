@@ -9,7 +9,6 @@ function TrelloList({ uid, title, cards, addCard, changeTitle }) {
 		<div className="TrelloList">
 			<div className="ListHeader">
 				<h1 onClick={() => changeTitle(uid, title)} >{title}</h1>
-				<a href="#" >X</a>
 			</div>
 			<div className="Cards">
 				{ cards.filter(({ list_id }) => list_id === uid).map(({ id, title }) => (
