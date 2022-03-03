@@ -31,7 +31,8 @@
 }
 
 
-.TrelloBoard > button:hover {
+.TrelloBoard > button:hover,
+.TrelloBoard > button:focus {
 	transition: ease-in-out 0.2s;
 	background-color: #fff;
 	color: #05a5f5;
