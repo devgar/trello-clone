@@ -4,18 +4,19 @@ import TrelloCard from './TrelloCard'
 
 import './TrelloList.css'
 
-function TrelloList({ uid, title, cards, addCard, changeTitle }) {
+function TrelloList({ listId, title, cards, addCard, changeTitle }) {
 	return (
 		<div className="TrelloList">
 			<div className="ListHeader">
-				<h1 onClick={() => changeTitle(uid, title)} >{title}</h1>
+				<h1 onClick={() => changeTitle(listId, title)} >{title}</h1>
+
 			</div>
 			<div className="Cards">
-				{ cards.filter(({ list_id }) => list_id === uid).map(({ id, title }) => (
+				{ cards.filter(({ list_id }) => list_id === listId).map(({ id, title }) => (
 					<TrelloCard cardId={id} title={title} key={id} />
 				) )}
 			</div>
-			<button onClick={() => addCard(uid)} >Add Card</button>
+			<button onClick={() => addCard(listId)} >Add Card</button>
 		</div>
 	)
 }
