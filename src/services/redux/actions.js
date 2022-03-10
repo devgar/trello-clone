@@ -4,7 +4,7 @@ export const LISTS_RENAME = 'LISTS_RENAME'
 export const CARDS_ADD = 'CARDS_ADD'
 export const CARDS_RENAME = 'CARDS_RENAME'
 
-export const list_add = () => {
+export const lists_add = () => {
 	let title = prompt("Título para la nueva lista", "Sin título")
 	if (title !== null) {
 		return {
@@ -16,7 +16,7 @@ export const list_add = () => {
 	}
 }
 
-export const list_rename = (list_id, title) => {
+export const lists_rename = (list_id, title) => {
 	return {
 		type: LISTS_RENAME,
 		data: {
@@ -26,7 +26,7 @@ export const list_rename = (list_id, title) => {
 	}
 }
 
-export const card_add = (list_id) => {
+export const cards_add = (list_id) => {
 	let title = prompt("Título para la nueva tarjeta", "Sin título")
 	if (title !== null) {
 		return {
@@ -39,7 +39,7 @@ export const card_add = (list_id) => {
 	}
 }
 
-export const card_rename = (card_id, title) => {
+export const cards_rename = (card_id, title) => {
 	return {
 		type: CARDS_RENAME,
 		data: {
