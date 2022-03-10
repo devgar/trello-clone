@@ -34,5 +34,8 @@ const mutations = {
 	}),
 }
 
-export default (state = initialState, { type, data }) =>
-	mutations[type] ? mutations[type](state, data) : state
+function reducer(state = initialState, { type, data }) {
+  return mutations[type] ? mutations[type](state, data) : state
+}
+
+export default reducer
