@@ -1,4 +1,4 @@
-import TrelloBoard from './TrelloBoard'
+import TrelloBoard from './components/TrelloBoard'
 import './App.css'
 
 function App() {

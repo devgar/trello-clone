@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { lists_rename, cards_add } from './services/redux/actions'
+import { lists_rename, cards_add } from '../services/redux/actions'
 
 import TrelloCard from './TrelloCard'
 

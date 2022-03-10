@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 
-import { cards_rename } from './services/redux/actions'
+import { cards_rename } from '../services/redux/actions'
 
 import './TrelloCard.css'
 

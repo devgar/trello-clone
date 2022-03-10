@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { lists_add } from './services/redux/actions.js'
+import { lists_add } from '../services/redux/actions.js'
 
 import TrelloList from './TrelloList.js'
 
