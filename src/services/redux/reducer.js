@@ -1,39 +1,38 @@
 import ID from '../../lib/id.js'
 
+import { LISTS_ADD, LISTS_RENAME, CARDS_ADD, CARDS_RENAME } from './actions.js'
+
 const initialState = {
-	value: 0, 
 	lists: [], 
 	cards: [],
 }
 
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case 'COUNTER/INCREMENTED':
-			return { value: state.value + 1 }
-    case 'COUNTER/DECREMENTED':
-			return { value: state.value - 1 }
-	
-		case 'LISTS/ADD':
-			action.data.id ??= ID()
-			return { ...state, lists: [...state.lists, action.data] }
-		case 'LISTS/RENAME':
-			const lists = state.lists.map( list =>
-				action.id === list.id ? {...list, title: action.title } : list 
-			)
-			return { ...state, lists }
-	
-		case 'CARDS/ADD':
-			action.data.id ??= ID()
-			return { ...state, cards: [...state.cards, action.data] }
-		case 'CARDS/RENAME':
-			const cards = state.cards.map( card =>
-				action.id === card.id ? {...card, title: action.title } : card 
-			)
-			return { ...state, cards }
-
-		default:
-      return state
-  }
+const mutations = {
+	[LISTS_ADD](state, data) {
+		data.id ??= ID()
+		return { ...state, lists: [...state.lists, data] }
+	},
+	[LISTS_RENAME]: (state, data) => ({ 
+		...state,
+		lists: state.lists.map(list => 
+			list.id === data.id 
+			? { ...list, title: data.title } 
+			: list
+		)
+	}),
+	[CARDS_ADD](state, data) {
+		data.id ??= ID()
+		return { ...state, cards: [...state.cards, data] }
+	},
+	[CARDS_RENAME]: (state, data) => ({
+		...state,
+		cards: state.cards.map(card =>
+			card.id === data.id
+			? { ...card, title: data.title }
+			: card
+		)
+	}),
 }
 
-export default reducer
+export default (state = initialState, { type, data }) =>
+	mutations[type] ? mutations[type](state, data) : state

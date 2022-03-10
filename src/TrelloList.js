@@ -1,5 +1,7 @@
 import { connect } from 'react-redux'
 
+import { LISTS_RENAME, CARDS_ADD } from './services/redux/actions'
+
 import TrelloCard from './TrelloCard'
 
 import './TrelloList.css'
@@ -28,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
 		let title = prompt("Título para la nueva tarjeta", "Sin título")
 		if (title !== null) {
 			return dispatch({
-				type: 'CARDS/ADD',
+				type: CARDS_ADD,
 				data: {
 					title: title || "Sin título",
 					list_id: id
@@ -38,7 +40,7 @@ const mapDispatchToProps = dispatch => ({
 	},
 	changeTitle(id, title) {
 		return dispatch({
-			type: 'LISTS/RENAME',
+			type: LISTS_RENAME,
 			id: id,
 			title: prompt("Cambiar título a la lista", title) || title
 		})

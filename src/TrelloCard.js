@@ -1,5 +1,7 @@
 import { connect } from 'react-redux'
 
+import { CARDS_RENAME } from './services/redux/actions'
+
 import './TrelloCard.css'
 
 function TrelloCard({ cardId, title, changeTitle }) {
@@ -13,7 +15,7 @@ function TrelloCard({ cardId, title, changeTitle }) {
 const mapDispatchToProps = dispatch => ({
 	changeTitle(id, title) {
 		return dispatch({
-			type: 'CARDS/RENAME',
+			type: CARDS_RENAME,
 			id: id,
 			title: prompt("Cambiar el título a la tarea", title) || title
 		})
