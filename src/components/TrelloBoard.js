@@ -14,7 +14,7 @@ function TrelloBoard() {
 	return (
 		<div className="TrelloBoard">
 			{ lists.map(({ id, title }) => 
-				(<TrelloList key={id} uid={id} title={title} />))
+				(<TrelloList key={id} listId={id} title={title} />))
 			}
 			<button onClick={() => dispatch(lists_add())}>Add List</button>
 		</div>
